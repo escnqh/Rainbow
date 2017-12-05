@@ -4,11 +4,13 @@ package com.ntanougat.rainbow.entities;
  * Created by Peelson on 2017/12/4.
  */
 
-public class PersonInfomation {
+public class UserInfo {
     private int userId;
     private String userName;
-    private String phoneNumber;
     private String portraitUrl;
+    private String phoneNumber;
+    private String password;
+
 
     public int getUserId() {
         return userId;
@@ -40,5 +42,13 @@ public class PersonInfomation {
 
     public void setPortraitUrl(String portraitUrl) {
         this.portraitUrl = portraitUrl;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
