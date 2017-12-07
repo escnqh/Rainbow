@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 
@@ -11,7 +12,7 @@ import butterknife.ButterKnife;
  * Created by Peelson on 2017/11/29.
  */
 
-public abstract class BaseActivity<V, P extends BasePresenter<V>>  extends Activity{
+public abstract class BaseActivity<V, P extends BasePresenter<V>>  extends AppCompatActivity{
     protected P mPresenter;
     private static final String TAG = "BaseActivity";
     public Context mContext;
