@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import com.ntanougat.rainbow.R;
 import com.ntanougat.rainbow.base.BaseFragment;
-import com.ntanougat.rainbow.base.BasePresenter;
 import com.ntanougat.rainbow.contract.UserPageContract;
 import com.ntanougat.rainbow.entities.Story;
 import com.ntanougat.rainbow.presenter.UserPagePresenter;
@@ -65,7 +64,7 @@ public class UserPageFragment extends BaseFragment<UserPageContract.View<Story>,
     }
 
     private void initData() {
-
+        mPresenter.start();
     }
 
     private void initView(View v) {

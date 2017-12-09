@@ -7,7 +7,7 @@ import java.lang.ref.WeakReference;
  * Created by Peelson on 2017/11/29.
  */
 
-public class BasePresenter<V> {
+public abstract class BasePresenter<V> {
     protected Reference<V> mViewRef;
 
     //与View建立关系
@@ -32,4 +32,9 @@ public class BasePresenter<V> {
             mViewRef = null;
         }
     }
+
+    /**
+     * 用于一些初始化方法
+     */
+    public abstract void start();
 }

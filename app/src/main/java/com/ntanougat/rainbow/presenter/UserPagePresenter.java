@@ -28,7 +28,7 @@ public class UserPagePresenter extends BasePresenter<UserPageContract.View<Story
 
     @Override
     public void requestRefreshMyStorys() {
-        mModel.loadMyStorys(true,mStorys.get());
+
     }
 
     @Override
@@ -58,6 +58,11 @@ public class UserPagePresenter extends BasePresenter<UserPageContract.View<Story
 
     @Override
     public void onInteractionFail(int errorCode, String errorMsg) {
+
+    }
+
+    @Override
+    public void start() {
 
     }
 }
