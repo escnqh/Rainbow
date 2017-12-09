@@ -1,4 +1,4 @@
-package com.ntanougat.rainbow.ui.view;
+package com.ntanougat.rainbow.entities;
 
 
 public class CardItem {

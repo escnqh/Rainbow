@@ -1,7 +1,5 @@
 package com.ntanougat.rainbow.entities;
 
-import com.ntanougat.rainbow.entities.listBean.SituationBean;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +10,7 @@ import java.util.List;
 public class Story {
     private int storyId;
     private String title;
-    private List<SituationBean> situationBeans = new ArrayList<>();
+    private List<Situation> situationBeans = new ArrayList<>();
 
     public int getStoryId() {
         return storyId;
@@ -30,11 +28,11 @@ public class Story {
         this.title = title;
     }
 
-    public List<SituationBean> getSituationBeans() {
+    public List<Situation> getSituationBeans() {
         return situationBeans;
     }
 
-    public void setSituationBeans(List<SituationBean> situationBeans) {
+    public void setSituationBeans(List<Situation> situationBeans) {
         this.situationBeans = situationBeans;
     }
 }

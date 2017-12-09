@@ -1,10 +1,10 @@
-package com.ntanougat.rainbow.entities.listBean;
+package com.ntanougat.rainbow.entities;
 
 /**
  * Created by Peelson on 2017/12/4.
  */
 
-public class SituationBean {
+public class Situation {
     private int imgId;
     private String imgUrl;
     private String content;

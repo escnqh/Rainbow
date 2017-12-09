@@ -12,6 +12,7 @@ import com.ntanougat.rainbow.R;
 import com.ntanougat.rainbow.adapter.CardAdapter;
 
 
+
 public class CardFragment extends Fragment {
 
     private CardView mCardView;

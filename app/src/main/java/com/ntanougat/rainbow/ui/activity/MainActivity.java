@@ -1,17 +1,14 @@
 package com.ntanougat.rainbow.ui.activity;
 
-import android.app.Activity;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.ViewParent;
 
 import com.ntanougat.rainbow.R;
 import com.ntanougat.rainbow.adapter.CardFragmentPagerAdapter;
 import com.ntanougat.rainbow.adapter.CardPagerAdapter;
-import com.ntanougat.rainbow.ui.view.CardItem;
+import com.ntanougat.rainbow.entities.CardItem;
 import com.ntanougat.rainbow.utils.ShadowTransformer;
 
 

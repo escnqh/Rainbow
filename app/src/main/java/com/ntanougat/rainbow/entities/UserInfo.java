@@ -1,5 +1,7 @@
 package com.ntanougat.rainbow.entities;
 
+import java.util.List;
+
 /**
  * Created by Peelson on 2017/12/4.
  */
@@ -10,6 +12,7 @@ public class UserInfo {
     private String portraitUrl;
     private String phoneNumber;
     private String password;
+    private List<Story> myStorys;
 
 
     public int getUserId() {
@@ -50,5 +53,13 @@ public class UserInfo {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Story> getMyStorys() {
+        return myStorys;
+    }
+
+    public void setMyStorys(List<Story> myStorys) {
+        this.myStorys = myStorys;
     }
 }

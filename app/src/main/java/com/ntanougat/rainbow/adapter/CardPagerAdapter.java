@@ -1,6 +1,5 @@
 package com.ntanougat.rainbow.adapter;
 
-import android.media.Image;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -10,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ntanougat.rainbow.R;
-import com.ntanougat.rainbow.ui.view.CardItem;
+import com.ntanougat.rainbow.entities.CardItem;
 
 import java.util.ArrayList;
 import java.util.List;
