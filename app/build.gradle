@@ -35,4 +35,6 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.squareup.okhttp3:okhttp:3.8.0'
+    //使用BottonNavigationBar
+    compile 'com.ashokvarma.android:bottom-navigation-bar:1.4.1'
 }

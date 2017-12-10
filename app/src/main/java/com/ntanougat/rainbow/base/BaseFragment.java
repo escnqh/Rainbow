@@ -1,8 +1,9 @@
 package com.ntanougat.rainbow.base;
 
-import android.app.Fragment;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 
 /**
  * Created by Peelson on 2017/11/25.
