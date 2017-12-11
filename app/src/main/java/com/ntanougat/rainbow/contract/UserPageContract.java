@@ -44,7 +44,9 @@ public class UserPageContract extends BaseContract {
 
     public interface InteractionListener<T> {
 
-        void onInteractionSeccess(T t);
+        void onLoadMyStorysSeccess(T t);
+
+        void onLoadUserInfoSeccess(String userName,String headUrl);
 
         void onInteractionFail(int errorCode, String errorMsg);
 

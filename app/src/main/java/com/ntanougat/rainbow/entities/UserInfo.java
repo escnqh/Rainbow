@@ -1,65 +1,53 @@
 package com.ntanougat.rainbow.entities;
 
-import java.util.List;
 
 /**
  * Created by Peelson on 2017/12/4.
  */
 
 public class UserInfo {
-    private int userId;
-    private String userName;
-    private String portraitUrl;
-    private String phoneNumber;
-    private String password;
-    private List<Story> myStorys;
 
+    /**
+     * uid : userId
+     * uname : userName
+     * headUrl : 头像
+     * uphone : 账号
+     */
 
-    public int getUserId() {
-        return userId;
+    private String uid;
+    private String uname;
+    private String headUrl;
+    private String uphone;
+
+    public String getUid() {
+        return uid;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUname() {
+        return uname;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUname(String uname) {
+        this.uname = uname;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getHeadUrl() {
+        return headUrl;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setHeadUrl(String headUrl) {
+        this.headUrl = headUrl;
     }
 
-    public String getPortraitUrl() {
-        return portraitUrl;
+    public String getUphone() {
+        return uphone;
     }
 
-    public void setPortraitUrl(String portraitUrl) {
-        this.portraitUrl = portraitUrl;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public List<Story> getMyStorys() {
-        return myStorys;
-    }
-
-    public void setMyStorys(List<Story> myStorys) {
-        this.myStorys = myStorys;
+    public void setUphone(String uphone) {
+        this.uphone = uphone;
     }
 }

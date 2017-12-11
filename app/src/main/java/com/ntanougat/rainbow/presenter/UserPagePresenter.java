@@ -52,7 +52,7 @@ public class UserPagePresenter extends BasePresenter<UserPageContract.View<Story
     }
 
     @Override
-    public void onInteractionSeccess(ArrayList<Story> stories) {
+    public void onLoadMyStorysSeccess(ArrayList<Story> stories) {
 
     }
 
