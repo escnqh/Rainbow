@@ -64,7 +64,7 @@ public class UserPageModel implements UserPageContract.Model {
         call_changePortrait.enqueue(new Callback<IsTureBean>() {
             @Override
             public void onResponse(Call<IsTureBean> call, Response<IsTureBean> response) {
-                if(response.body().getReslut().equals("1")){
+                if(response.body().getResult().equals("1")){
                     mListener.onUpLoadUserHeadSeccess();
                 }
                 else{

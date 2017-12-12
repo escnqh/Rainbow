@@ -8,10 +8,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -29,13 +33,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener,SearchView.OnQueryTextListener{
 
     private MainPageFragment mainPageFragment;
     private ListPageFragment listPageFragment;
     private UserPageFragment userPageFragment;
     private FragmentManager fragmentManager;
     private Menu mainMenu;
+    private SearchView searchView;
+
 
     private String userId;
     private String userName;
@@ -166,8 +172,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else {
             menu.clear();
             getMenuInflater().inflate(R.menu.toolbar_listpage_activity,menu);
+            MenuItem menuItem=menu.findItem(R.id.toolbar_search);
+            View view= MenuItemCompat.getActionView(menuItem);
+            if(view!=null){
+                searchView= (SearchView) view;
+                searchView.setOnQueryTextListener(this);
+            }
             return true;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.toolbar_about:
+
+                break;
+            case R.id.toolbar_search:
+
+                break;
+            default:
+                break;
+        }
+        return true;
     }
 
     @Override
@@ -220,4 +247,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        listPageFragment.requstShowResult(query);
+        Log.i("MMMMMMM",query+"");
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
+    }
 }

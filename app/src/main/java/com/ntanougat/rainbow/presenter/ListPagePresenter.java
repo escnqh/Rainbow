@@ -24,10 +24,6 @@ public class ListPagePresenter extends BasePresenter<ListPageContract.View<Story
         mModel = new ListPageModel(param, this);
     }
 
-    @Override
-    public void requstShowResult() {
-
-    }
 
     @Override
     public void onInteractionSeccess(ArrayList<Story> stories) {
@@ -41,6 +37,11 @@ public class ListPagePresenter extends BasePresenter<ListPageContract.View<Story
 
     @Override
     public void start() {
+
+    }
+
+    @Override
+    public void requstShowResult(String text) {
 
     }
 }

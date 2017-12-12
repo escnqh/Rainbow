@@ -35,9 +35,9 @@ import cn.bingoogolapple.photopicker.activity.BGAPhotoPickerActivity;
  * Created by Peelson on 2017/12/9.
  */
 
-public class UserPageFragment extends BaseFragment<UserPageContract.View<Story>,UserPagePresenter> implements UserPageContract.View<Story>{
+public class UserPageFragment extends BaseFragment<UserPageContract.View<Story>, UserPagePresenter> implements UserPageContract.View<Story> {
 
-    private static final String TAG=UserPageFragment.class.getSimpleName();
+    private static final String TAG = UserPageFragment.class.getSimpleName();
 
     @BindView(R.id.civ_userhead)
     CircleImageView civ_userhead;
@@ -53,36 +53,36 @@ public class UserPageFragment extends BaseFragment<UserPageContract.View<Story>,
     private String param;
     private String userId;
 
-    public UserPageFragment(){
+    public UserPageFragment() {
 
     }
 
-    public static UserPageFragment newInstance(String param){
-        UserPageFragment userPageFragment=new UserPageFragment();
-        Bundle args=new Bundle();
-        args.putString("param",param);
+    public static UserPageFragment newInstance(String param) {
+        UserPageFragment userPageFragment = new UserPageFragment();
+        Bundle args = new Bundle();
+        args.putString("param", param);
         userPageFragment.setArguments(args);
         return userPageFragment;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        if(getArguments()!=null){
-            param=getArguments().getString("param");
+        if (getArguments() != null) {
+            param = getArguments().getString("param");
         }
         super.onCreate(savedInstanceState);
     }
 
     @Override
     protected UserPagePresenter createPresenter() {
-        return new UserPagePresenter(param,this);
+        return new UserPagePresenter(param, this);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.fragment_userpage,container,false);
-        ButterKnife.bind(this,v);
+        View v = inflater.inflate(R.layout.fragment_userpage, container, false);
+        ButterKnife.bind(this, v);
         initView(v);
         return v;
     }
@@ -116,7 +116,7 @@ public class UserPageFragment extends BaseFragment<UserPageContract.View<Story>,
         civ_userhead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(BGAPhotoPickerActivity.newIntent(getActivity(),null,1,null,false),55);
+                startActivityForResult(BGAPhotoPickerActivity.newIntent(getActivity(), null, 1, null, false), 55);
             }
         });
 
@@ -125,17 +125,17 @@ public class UserPageFragment extends BaseFragment<UserPageContract.View<Story>,
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode== Activity.RESULT_OK&&requestCode==55){
-            final String localPicturePath=BGAPhotoPickerActivity.getSelectedImages(data).get(0);
+        if (resultCode == Activity.RESULT_OK && requestCode == 55) {
+            final String localPicturePath = BGAPhotoPickerActivity.getSelectedImages(data).get(0);
             mPresenter.requsetChangeUserPortrait(localPicturePath);
         }
     }
 
     @Override
     public void refreshMyStorys(ArrayList<Story> arrayList) {
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         list_mystorys.setLayoutManager(linearLayoutManager);
-        MyStorysAdapter myStorysAdapter=new MyStorysAdapter(arrayList,getActivity());
+        MyStorysAdapter myStorysAdapter = new MyStorysAdapter(arrayList, getActivity());
         myStorysAdapter.SetOnItemClickListener(new MyStorysAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {

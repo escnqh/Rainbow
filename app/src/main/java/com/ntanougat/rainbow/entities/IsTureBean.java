@@ -7,16 +7,16 @@ package com.ntanougat.rainbow.entities;
 public class IsTureBean {
 
     /**
-     * reslut : 1
+     * result : 1
      */
 
-    private String reslut;
+    private String result;
 
-    public String getReslut() {
-        return reslut;
+    public String getResult() {
+        return result;
     }
 
-    public void setReslut(String reslut) {
-        this.reslut = reslut;
+    public void setResult(String result) {
+        this.result = result;
     }
 }

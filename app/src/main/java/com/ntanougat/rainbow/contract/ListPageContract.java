@@ -21,7 +21,7 @@ public class ListPageContract {
 
     public interface Presenter {
 
-        void requstShowResult();
+        void requstShowResult(String text);
 
     }
 

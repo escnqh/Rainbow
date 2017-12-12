@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.ntanougat.rainbow.R;
 import com.ntanougat.rainbow.base.BaseFragment;
@@ -23,6 +24,7 @@ import butterknife.ButterKnife;
 public class ListPageFragment extends BaseFragment<ListPageContract.View<Story>, ListPagePresenter> implements ListPageContract.View<Story>, ListPageContract.Presenter {
     private static final String TAG = ListPageFragment.class.getSimpleName();
     private String param;
+
 
     public ListPageFragment() {
 
@@ -72,13 +74,15 @@ public class ListPageFragment extends BaseFragment<ListPageContract.View<Story>,
 
     }
 
-    @Override
-    public void requstShowResult() {
 
-    }
 
     @Override
     protected ListPagePresenter createPresenter() {
         return new ListPagePresenter(param,this);
+    }
+
+    @Override
+    public void requstShowResult(String text) {
+
     }
 }

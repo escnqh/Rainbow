@@ -18,7 +18,7 @@ public class StoryReadContract extends BaseContract {
 
     public interface View<T> {
 
-        void showStory(ArrayList<T> arrayList);
+        void showStory(T t);
     }
 
     public interface Presenter {
@@ -29,9 +29,9 @@ public class StoryReadContract extends BaseContract {
 
     public interface InteractionListener<T> {
 
-        void onInteractionSeccess(T t);
+        void onLoadStorySeccess(T t);
 
-        void onInteractionFail(int errorCode, String errorMsg);
+        void onLoadStoryFail();
     }
 
 }
