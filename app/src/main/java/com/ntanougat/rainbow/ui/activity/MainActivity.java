@@ -101,6 +101,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         hideFragment(transaction);
         switch (position){
             case 0:
+                toolbarchange=0;
+                onPrepareOptionsMenu(mainMenu);
                 if(mainPageFragment==null){
                     mainPageFragment= MainPageFragment.newInstance(null);
                     transaction.add(R.id.frame_fragment,mainPageFragment);
@@ -109,6 +111,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case 1:
+                toolbarchange=1;
+                onPrepareOptionsMenu(mainMenu);
                 if(listPageFragment==null){
                     listPageFragment= ListPageFragment.newInstance(null);
                     transaction.add(R.id.frame_fragment,listPageFragment);
@@ -117,6 +121,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case 2:
+                toolbarchange=0;
+                onPrepareOptionsMenu(mainMenu);
                 if (userPageFragment==null){
                     userPageFragment=UserPageFragment.newInstance(userId);
                     transaction.add(R.id.frame_fragment,userPageFragment);
