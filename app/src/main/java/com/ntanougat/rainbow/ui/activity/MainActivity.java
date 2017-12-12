@@ -1,6 +1,7 @@
 package com.ntanougat.rainbow.ui.activity;
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -10,11 +11,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.ntanougat.rainbow.R;
+import com.ntanougat.rainbow.contract.MainPageContract;
 import com.ntanougat.rainbow.ui.fragment.ListPageFragment;
 import com.ntanougat.rainbow.ui.fragment.MainPageFragment;
 import com.ntanougat.rainbow.ui.fragment.UserPageFragment;
@@ -32,6 +35,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ListPageFragment listPageFragment;
     private UserPageFragment userPageFragment;
     private FragmentManager fragmentManager;
+    private Menu mainMenu;
+
+    private String userId;
+    private String userName;
+    private int toolbarchange =0;
 
     @BindView(R.id.navigation_bar_main)
     BottomNavigationBar navigationBarMain;
@@ -47,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initView();
         initFragment();
         initPermission();
+        SharedPreferences sharedPreferences=getSharedPreferences("userdata",MODE_PRIVATE);
+
     }
 
     private void initView() {
@@ -92,16 +102,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (position){
             case 0:
                 if(mainPageFragment==null){
-
+                    mainPageFragment= MainPageFragment.newInstance(null);
+                    transaction.add(R.id.frame_fragment,mainPageFragment);
                 }else {
                     transaction.show(mainPageFragment);
                 }
                 break;
             case 1:
+                if(listPageFragment==null){
+                    listPageFragment= ListPageFragment.newInstance(null);
+                    transaction.add(R.id.frame_fragment,listPageFragment);
+                }else {
+                    transaction.show(listPageFragment);
+                }
                 break;
             case 2:
                 if (userPageFragment==null){
-                    userPageFragment=UserPageFragment.newInstance(null);
+                    userPageFragment=UserPageFragment.newInstance(userId);
                     transaction.add(R.id.frame_fragment,userPageFragment);
                 }else {
                     transaction.show(userPageFragment);
@@ -131,6 +148,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         transaction.replace(R.id.frame_fragment,mainPageFragment);
         transaction.commit();
     }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        mainMenu=menu;
+        super.onPrepareOptionsMenu(menu);
+        if (toolbarchange==0){
+            menu.clear();
+            getMenuInflater().inflate(R.menu.toolbar_mainpage_activity,menu);
+            return true;
+        }else {
+            menu.clear();
+            getMenuInflater().inflate(R.menu.toolbar_listpage_activity,menu);
+            return true;
+        }
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
