@@ -1,6 +1,6 @@
 package com.ntanougat.rainbow.WebService;
 
-import com.ntanougat.rainbow.entities.IsLoginBean;
+import com.ntanougat.rainbow.entities.IsTureBean;
 
 import retrofit2.Call;
 import retrofit2.http.POST;
@@ -13,7 +13,7 @@ import retrofit2.http.Query;
 public interface LoginService {
 
     @POST("login")
-    Call<IsLoginBean> getState(
+    Call<IsTureBean> getState(
             @Query("uphone") String userPhone,
             @Query("upsw") String userPassword
     );

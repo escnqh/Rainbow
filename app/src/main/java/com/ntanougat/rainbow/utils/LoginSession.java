@@ -32,10 +32,7 @@ public class LoginSession {
      * @param userInfo
      */
     public void saveUserInfo(UserInfo userInfo) {
-        SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString("userName", userInfo.getUserName());
-        editor.putString("",userInfo.getPassword());
-        editor.commit();
+
     }
 
     public void clear() {

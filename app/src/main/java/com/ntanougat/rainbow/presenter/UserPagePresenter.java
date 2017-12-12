@@ -25,25 +25,24 @@ public class UserPagePresenter extends BasePresenter<UserPageContract.View<Story
         this.mModel = new UserPageModel(param, this);
     }
 
-
     @Override
-    public void requestRefreshMyStorys() {
-
+    public void requestRefreshMyStorys(String userId) {
+        mModel.loadMyStorys();
     }
 
     @Override
     public void requestChangeUserName() {
-
+        mModel.loadUserInfo();
     }
 
     @Override
-    public void requsetChangeUserPortrait() {
-
+    public void requsetChangeUserPortrait(String localPicturePath) {
+        mModel.upLoadUserHead(localPicturePath);
     }
 
     @Override
     public void requsetDeleteOneStory() {
-
+        mModel.loadMyStorys();
     }
 
     @Override
@@ -53,6 +52,41 @@ public class UserPagePresenter extends BasePresenter<UserPageContract.View<Story
 
     @Override
     public void onLoadMyStorysSeccess(ArrayList<Story> stories) {
+
+    }
+
+    @Override
+    public void onLoadMyStorysFail() {
+
+    }
+
+    @Override
+    public void onUpLoadUserHeadSeccess() {
+
+    }
+
+    @Override
+    public void onUpLoadUserHeadFail() {
+
+    }
+
+    @Override
+    public void onChangeUserHeadSeccess() {
+
+    }
+
+    @Override
+    public void onChangeUserHeadFail() {
+
+    }
+
+    @Override
+    public void onLoadUserInfoSeccess(String userName, String headUrl) {
+
+    }
+
+    @Override
+    public void onLoadUserInfoFail() {
 
     }
 

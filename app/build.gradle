@@ -36,5 +36,11 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.squareup.okhttp3:okhttp:3.8.0'
     //使用BottonNavigationBar
-    compile 'com.ashokvarma.android:bottom-navigation-bar:1.4.1'
+    compile 'com.ashokvarma.android:bottom-navigation-bar:2.0.2'
+    //相册Picker
+    compile 'cn.bingoogolapple:bga-photopicker:1.2.3@aar'
+    compile 'cn.bingoogolapple:bga-adapter:1.1.8@aar'
+    //picasso
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
 }

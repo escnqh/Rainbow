@@ -102,11 +102,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case 2:
                 if (userPageFragment==null){
                     userPageFragment=UserPageFragment.newInstance(null);
-
+                    transaction.add(R.id.frame_fragment,userPageFragment);
+                }else {
+                    transaction.show(userPageFragment);
                 }
-                transaction.commit();
+                break;
+            default:
+                break;
         }
-
+        transaction.commit();
     }
 
     private void hideFragment(FragmentTransaction transaction) {

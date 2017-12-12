@@ -12,18 +12,21 @@ public class UserPageContract extends BaseContract {
 
     public interface Model {
 
-        void loadUserInfo(boolean isLoad);
+        void loadUserInfo();
 
-        void loadMyStorys(boolean isLoad);
+        void loadMyStorys();
+
+        void upLoadUserHead(String localPicturePath);
+
     }
 
     public interface View<T> {
 
         void refreshMyStorys(ArrayList<T> arrayList);
 
-        void changeUserName();
+        void changeUserName(String userName);
 
-        void changeUserPortrait();
+        void changeUserPortrait(String headUrl);
 
         void deleteOneStory();
 
@@ -31,11 +34,11 @@ public class UserPageContract extends BaseContract {
 
     public interface Presenter {
 
-        void requestRefreshMyStorys();
+        void requestRefreshMyStorys(String userId);
 
         void requestChangeUserName();
 
-        void requsetChangeUserPortrait();
+        void requsetChangeUserPortrait(String localPicturePath);
 
         void requsetDeleteOneStory();
 
@@ -45,9 +48,13 @@ public class UserPageContract extends BaseContract {
     public interface InteractionListener<T> {
 
         void onLoadMyStorysSeccess(T t);
-
+        void onLoadMyStorysFail();
+        void onUpLoadUserHeadSeccess();
+        void onUpLoadUserHeadFail();
+        void onChangeUserHeadSeccess();
+        void onChangeUserHeadFail();
         void onLoadUserInfoSeccess(String userName,String headUrl);
-
+        void onLoadUserInfoFail();
         void onInteractionFail(int errorCode, String errorMsg);
 
     }
