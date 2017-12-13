@@ -11,18 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ntanougat.rainbow.R;
-import com.ntanougat.rainbow.RBApplication;
 import com.ntanougat.rainbow.adapter.MyStorysAdapter;
 import com.ntanougat.rainbow.base.BaseFragment;
 import com.ntanougat.rainbow.contract.UserPageContract;
 import com.ntanougat.rainbow.entities.Story;
 import com.ntanougat.rainbow.presenter.UserPagePresenter;
-import com.ntanougat.rainbow.ui.activity.MainActivity;
-import com.ntanougat.rainbow.utils.CircleImageView;
+import com.ntanougat.rainbow.ui.view.CircleImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

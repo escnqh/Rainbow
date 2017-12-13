@@ -1,4 +1,4 @@
-package com.ntanougat.rainbow.utils;
+package com.ntanougat.rainbow.ui.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
