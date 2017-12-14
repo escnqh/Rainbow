@@ -32,7 +32,7 @@
 |Part|Name|
 |-|-|
 |Android端|[Peelson][1]|
-|Server端|[小奇][2]|
+|Server端|[Carl][2]|
 |数据与数据库|朱祖桐|
 |文档与划水|张有坤、叶文森|
 
