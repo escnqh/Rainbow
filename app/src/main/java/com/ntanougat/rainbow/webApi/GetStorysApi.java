@@ -1,5 +1,6 @@
 package com.ntanougat.rainbow.webApi;
 
+import com.ntanougat.rainbow.WebService.GetStroysService;
 import com.ntanougat.rainbow.WebService.GetUserInfoService;
 
 import retrofit2.Retrofit;
@@ -14,6 +15,6 @@ public class GetStorysApi extends WebApi {
 
     @Override
     public <T> T getService() {
-        return (T) retrofit.create(GetUserInfoService.class);
+        return (T) retrofit.create(GetStroysService.class);
     }
 }

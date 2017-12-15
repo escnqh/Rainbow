@@ -16,6 +16,7 @@ import com.ntanougat.rainbow.webApi.GetUserInfoApi;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -29,7 +30,7 @@ import retrofit2.Response;
  */
 
 public class UserPageModel implements UserPageContract.Model {
-    private UserPageContract.InteractionListener<ArrayList<Story>> mListener;
+    private UserPageContract.InteractionListener<List<MyStorysBean.ArrayBean>> mListener;
     private String param;
     private String userId;
     private String userPhone="123456";
@@ -37,7 +38,7 @@ public class UserPageModel implements UserPageContract.Model {
     private String headUrl;
 
 
-    public UserPageModel(String param, UserPageContract.InteractionListener<ArrayList<Story>> mListener){
+    public UserPageModel(String param, UserPageContract.InteractionListener<List<MyStorysBean.ArrayBean>> mListener){
         this.param=param;
         this.mListener=mListener;
     }
@@ -59,7 +60,7 @@ public class UserPageModel implements UserPageContract.Model {
         File file=new File(localPicturePath);
         RequestBody requestBody=RequestBody.create(MediaType.parse("multipart/form-data"),file);
         MultipartBody.Part body=MultipartBody.Part.createFormData("file",file.getName(),requestBody);
-        RequestBody userphone=RequestBody.create(null,"123456");
+        RequestBody userphone=RequestBody.create(null,userPhone);
         Call<IsTureBean> call_changePortrait=changePortraitService.getState(userphone,body);
         call_changePortrait.enqueue(new Callback<IsTureBean>() {
             @Override
@@ -88,35 +89,46 @@ public class UserPageModel implements UserPageContract.Model {
         call_userInfo.enqueue(new Callback<UserInfo>() {
             @Override
             public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
+                Log.i("GetUserInfoSeccessed","    "+userPhone);
                 if (response.body()!=null){
                     userId=response.body().getUid();
                     userName=response.body().getUname();
                     userPhone=response.body().getUphone();
                     headUrl=response.body().getHeadUrl();
                     mListener.onLoadUserInfoSeccess(userName,headUrl);
+                }else {
+                    mListener.onLoadUserInfoFail();
                 }
             }
 
             @Override
             public void onFailure(Call<UserInfo> call, Throwable t) {
                 mListener.onLoadUserInfoFail();
+                Log.i("GetUserInfoFailed",t+"");
             }
         });
     }
 
-    public void getMyStory(String userId) {
+    public void getMyStory(final String userId) {
         GetStorysApi getStorysApi=new GetStorysApi();
         GetStroysService getStroysService=getStorysApi.getService();
-        Call<MyStorysBean> call_myStorys=getStroysService.getState(userId);
+        Call<MyStorysBean> call_myStorys=getStroysService.getState("1");
         call_myStorys.enqueue(new Callback<MyStorysBean>() {
             @Override
             public void onResponse(Call<MyStorysBean> call, Response<MyStorysBean> response) {
-                //mListener.onLoadMyStorysSeccess();
+                Log.i("GetMyStorySeccessed", "    "+userId);
+                if(response.body().getArray().size()!=0){
+                    mListener.onLoadMyStorysSeccess(response.body().getArray());
+                }else{
+                    mListener.onLoadMyStorysFail();
+                }
+//
             }
 
             @Override
             public void onFailure(Call<MyStorysBean> call, Throwable t) {
                 mListener.onLoadMyStorysFail();
+                Log.i("GetMyStoryFailed", "    "+userId+"    "+t);
             }
         });
     }

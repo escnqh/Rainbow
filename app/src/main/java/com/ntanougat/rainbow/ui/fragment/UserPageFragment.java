@@ -17,12 +17,14 @@ import com.ntanougat.rainbow.R;
 import com.ntanougat.rainbow.adapter.MyStorysAdapter;
 import com.ntanougat.rainbow.base.BaseFragment;
 import com.ntanougat.rainbow.contract.UserPageContract;
+import com.ntanougat.rainbow.entities.MyStorysBean;
 import com.ntanougat.rainbow.entities.Story;
 import com.ntanougat.rainbow.presenter.UserPagePresenter;
 import com.ntanougat.rainbow.ui.view.CircleImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +34,7 @@ import cn.bingoogolapple.photopicker.activity.BGAPhotoPickerActivity;
  * Created by Peelson on 2017/12/9.
  */
 
-public class UserPageFragment extends BaseFragment<UserPageContract.View<Story>, UserPagePresenter> implements UserPageContract.View<Story> {
+public class UserPageFragment extends BaseFragment<UserPageContract.View<MyStorysBean.ArrayBean>, UserPagePresenter> implements UserPageContract.View<MyStorysBean.ArrayBean> {
 
     private static final String TAG = UserPageFragment.class.getSimpleName();
 
@@ -48,7 +50,7 @@ public class UserPageFragment extends BaseFragment<UserPageContract.View<Story>,
     SwipeRefreshLayout swipeRefreshLayout;
 
     private String param;
-    private String userId;
+    private String userId="123456";
 
     public UserPageFragment() {
 
@@ -129,7 +131,7 @@ public class UserPageFragment extends BaseFragment<UserPageContract.View<Story>,
     }
 
     @Override
-    public void refreshMyStorys(ArrayList<Story> arrayList) {
+    public void refreshMyStorys(List<MyStorysBean.ArrayBean> arrayList) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         list_mystorys.setLayoutManager(linearLayoutManager);
         MyStorysAdapter myStorysAdapter = new MyStorysAdapter(arrayList, getActivity());
@@ -144,6 +146,8 @@ public class UserPageFragment extends BaseFragment<UserPageContract.View<Story>,
                 mPresenter.requsetDeleteOneStory();
             }
         });
+        list_mystorys.setAdapter(myStorysAdapter);
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -153,7 +157,10 @@ public class UserPageFragment extends BaseFragment<UserPageContract.View<Story>,
 
     @Override
     public void changeUserPortrait(String headUrl) {
-        Picasso.with(getActivity()).load(headUrl).into(civ_userhead);
+        Picasso.with(getActivity())
+                .load("http://118.89.50.109:8080"+headUrl)
+                .error(R.drawable.nopic)
+                .into(civ_userhead);
     }
 
     @Override

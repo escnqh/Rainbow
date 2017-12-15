@@ -2,24 +2,26 @@ package com.ntanougat.rainbow.presenter;
 
 import com.ntanougat.rainbow.base.BasePresenter;
 import com.ntanougat.rainbow.contract.UserPageContract;
+import com.ntanougat.rainbow.entities.MyStorysBean;
 import com.ntanougat.rainbow.entities.Story;
 import com.ntanougat.rainbow.model.UserPageModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Peelson on 2017/12/9.
  */
 
-public class UserPagePresenter extends BasePresenter<UserPageContract.View<Story>> implements UserPageContract.InteractionListener<ArrayList<Story>>, UserPageContract.Presenter {
+public class UserPagePresenter extends BasePresenter<UserPageContract.View<MyStorysBean.ArrayBean>> implements UserPageContract.InteractionListener<List<MyStorysBean.ArrayBean>>, UserPageContract.Presenter {
 
-    private UserPageContract.View<Story> mView;
+    private UserPageContract.View<MyStorysBean.ArrayBean> mView;
     private UserPageContract.Model mModel;
-    private ArrayList<Story> mStorys;
+    private List<MyStorysBean.ArrayBean> mStorys;
     private boolean isLoad = false;
     private String param;
 
-    public UserPagePresenter(String param, UserPageContract.View<Story> view) {
+    public UserPagePresenter(String param, UserPageContract.View<MyStorysBean.ArrayBean> view) {
         this.param = param;
         this.mView = view;
         this.mModel = new UserPageModel(param, this);
@@ -51,8 +53,8 @@ public class UserPagePresenter extends BasePresenter<UserPageContract.View<Story
     }
 
     @Override
-    public void onLoadMyStorysSeccess(ArrayList<Story> stories) {
-
+    public void onLoadMyStorysSeccess(List<MyStorysBean.ArrayBean> stories) {
+        mView.refreshMyStorys(stories);
     }
 
     @Override
@@ -62,7 +64,7 @@ public class UserPagePresenter extends BasePresenter<UserPageContract.View<Story
 
     @Override
     public void onUpLoadUserHeadSeccess() {
-
+        mModel.loadUserInfo();
     }
 
     @Override
@@ -71,18 +73,19 @@ public class UserPagePresenter extends BasePresenter<UserPageContract.View<Story
     }
 
     @Override
-    public void onChangeUserHeadSeccess() {
-
+    public void onChangeUserNameSeccess() {
+        mModel.loadUserInfo();
     }
 
     @Override
-    public void onChangeUserHeadFail() {
+    public void onChangeUserNameFail() {
 
     }
 
     @Override
     public void onLoadUserInfoSeccess(String userName, String headUrl) {
-
+        mView.changeUserName(userName);
+        mView.changeUserPortrait(headUrl);
     }
 
     @Override
@@ -97,6 +100,7 @@ public class UserPagePresenter extends BasePresenter<UserPageContract.View<Story
 
     @Override
     public void start() {
-
+        mModel.loadUserInfo();
+        mModel.loadMyStorys();
     }
 }

@@ -3,6 +3,7 @@ package com.ntanougat.rainbow.contract;
 import com.ntanougat.rainbow.base.BaseContract;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Peelson on 2017/12/9.
@@ -22,7 +23,7 @@ public class UserPageContract extends BaseContract {
 
     public interface View<T> {
 
-        void refreshMyStorys(ArrayList<T> arrayList);
+        void refreshMyStorys(List<T> arrayList);
 
         void changeUserName(String userName);
 
@@ -51,8 +52,8 @@ public class UserPageContract extends BaseContract {
         void onLoadMyStorysFail();
         void onUpLoadUserHeadSeccess();
         void onUpLoadUserHeadFail();
-        void onChangeUserHeadSeccess();
-        void onChangeUserHeadFail();
+        void onChangeUserNameSeccess();
+        void onChangeUserNameFail();
         void onLoadUserInfoSeccess(String userName,String headUrl);
         void onLoadUserInfoFail();
         void onInteractionFail(int errorCode, String errorMsg);

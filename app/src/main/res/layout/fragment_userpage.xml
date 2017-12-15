@@ -9,13 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_marginTop="20dp"
-            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
-                android:layout_marginTop="20dp"
+                android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <com.ntanougat.rainbow.ui.view.CircleImageView
@@ -25,8 +24,7 @@
                     android:layout_height="80dp" />
             </LinearLayout>
             <LinearLayout
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
+                android:orientation="horizontal"
                 android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -68,6 +66,14 @@
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
                 android:text="我的作品"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#CACDD1"
+                android:layout_below="@+id/lin_info"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
         </LinearLayout>
 
         <android.support.v4.widget.SwipeRefreshLayout

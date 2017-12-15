@@ -2,6 +2,7 @@ package com.ntanougat.rainbow.adapter;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ntanougat.rainbow.R;
-import com.ntanougat.rainbow.entities.Story;
+import com.ntanougat.rainbow.entities.MyStorysBean;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -20,10 +21,10 @@ import java.util.List;
 
 public class MyStorysAdapter extends RecyclerView.Adapter<MyStorysAdapter.ViewHolder> {
 
-    private List<Story> myStorys;
+    private List<MyStorysBean.ArrayBean> myStorys;
     private Activity mActivity;
 
-    public MyStorysAdapter(List<Story> myStorys,Activity activity){
+    public MyStorysAdapter(List<MyStorysBean.ArrayBean>  myStorys,Activity activity){
         this.mActivity=activity;
         this.myStorys=myStorys;
     }
@@ -38,9 +39,11 @@ public class MyStorysAdapter extends RecyclerView.Adapter<MyStorysAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(final MyStorysAdapter.ViewHolder holder, int position) {
-
-        SetImageBitmap(holder,myStorys.get(position).getSituationBeans().get(0).getImgUrl());
-        String title=myStorys.get(position).getTitle();
+        if(myStorys.get(position).getStory().size()!=0){
+            SetImageBitmap(holder,myStorys.get(position).getStory().get(0).getPicture_url());
+        }
+        Log.i("LoadRecyclerViewPosi","     "+position);
+        String title=myStorys.get(position).getP_title();
         holder.tv_title.setText(title);
         if (OnItemClickListener!=null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +72,11 @@ public class MyStorysAdapter extends RecyclerView.Adapter<MyStorysAdapter.ViewHo
     private void SetImageBitmap(MyStorysAdapter.ViewHolder holder,String path){
 
         if (path != null) {
-            Picasso.with(mActivity).load(path).into(holder.iv_firstpage);
+            Picasso.with(mActivity)
+                    .load(path)
+                    .placeholder(R.drawable.nopic)
+                    .error(R.drawable.nopic)
+                    .into(holder.iv_firstpage);
         }
     }
 

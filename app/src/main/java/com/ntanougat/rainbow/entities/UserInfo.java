@@ -6,12 +6,11 @@ package com.ntanougat.rainbow.entities;
  */
 
 public class UserInfo {
-
     /**
-     * uid : userId
-     * uname : userName
-     * headUrl : 头像
-     * uphone : 账号
+     * uid : 4
+     * uname : hello
+     * headUrl : /headPic/123456.jpg
+     * uphone : 123456
      */
 
     private String uid;
