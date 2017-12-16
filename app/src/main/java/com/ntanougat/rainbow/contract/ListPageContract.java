@@ -1,6 +1,6 @@
 package com.ntanougat.rainbow.contract;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Peelson on 2017/12/10.
@@ -10,13 +10,13 @@ public class ListPageContract {
 
     public interface Model {
 
-        void loadSearchResult();
+        void loadSearchResult(String text);
 
     }
 
     public interface View<T> {
 
-        void showResultList(ArrayList<T> arrayList);
+        void showResultList(List<T> arrayList);
     }
 
     public interface Presenter {

@@ -1,7 +1,6 @@
 package com.ntanougat.rainbow.adapter;
 
 import android.app.Activity;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,26 +14,25 @@ import com.ntanougat.rainbow.entities.DownLoadStoryBean;
 import com.ntanougat.rainbow.entities.MyStorysBean;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Peelson on 2017/12/12.
  */
 
-public class MyStorysAdapter extends RecyclerView.Adapter<MyStorysAdapter.ViewHolder> {
+public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.ViewHolder> {
 
-    private List<MyStorysBean.ArrayBean> myStorys;
+    private List<DownLoadStoryBean> myStorys;
     private Activity mActivity;
 
-    public MyStorysAdapter(List<MyStorysBean.ArrayBean> myStorys,Activity activity){
+    public SearchResultAdapter(List<DownLoadStoryBean> myStorys, Activity activity){
         this.mActivity=activity;
         this.myStorys=myStorys;
     }
 
 
     @Override
-    public MyStorysAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SearchResultAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
         view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_story,null);
         ViewHolder viewHolder=new ViewHolder(view);
@@ -42,7 +40,7 @@ public class MyStorysAdapter extends RecyclerView.Adapter<MyStorysAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(final MyStorysAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final SearchResultAdapter.ViewHolder holder, int position) {
         if(myStorys.get(position).getStory().size()!=0){
             SetImageBitmap(holder,myStorys.get(position).getStory().get(0).getPicture_url());
         }
@@ -73,7 +71,7 @@ public class MyStorysAdapter extends RecyclerView.Adapter<MyStorysAdapter.ViewHo
         return myStorys.size();
     }
 
-    private void SetImageBitmap(MyStorysAdapter.ViewHolder holder,String path){
+    private void SetImageBitmap(SearchResultAdapter.ViewHolder holder, String path){
 
         if (path != null) {
             Picasso.with(mActivity)
