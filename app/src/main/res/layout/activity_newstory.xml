@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+        <TextView
+            android:layout_margin="5dp"
+            android:text="创建新的社交故事"
+            android:textSize="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#CACDD1"
+            android:layout_below="@+id/lin_info"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ed_title"
+            android:background="@color/md_white"
+            android:gravity="left|top"
+            android:minLines="1"
+            android:padding="8dp"
+            android:layout_marginTop="5dp"
+            android:hint="在此输入标题" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ed_content"
+            android:background="@color/md_white"
+            android:gravity="left|top"
+            android:minLines="5"
+            android:padding="4dp"
+            android:layout_marginTop="5dp"
+            android:hint="在此输入描述" />
+        <com.goyourfly.multi_picture.MultiPictureView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/multiple_image"
+            android:layout_marginTop="16dp"
+            app:editable="true"
+            app:ratio="1"
+            app:max="5"
+            app:space="6dp"
+            app:span="3">
+        </com.goyourfly.multi_picture.MultiPictureView>
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fbtn_done"
+        android:src="@drawable/ic_check"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="15dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
+</RelativeLayout>

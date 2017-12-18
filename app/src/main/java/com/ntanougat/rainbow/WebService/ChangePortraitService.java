@@ -21,5 +21,4 @@ public interface ChangePortraitService {
     Call<IsTureBean> getState(
             @Part("phone") RequestBody userPhone,
             @Part MultipartBody.Part file);
-
 }

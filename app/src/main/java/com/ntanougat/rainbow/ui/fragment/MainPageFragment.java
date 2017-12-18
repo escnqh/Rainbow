@@ -1,7 +1,9 @@
 package com.ntanougat.rainbow.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +14,11 @@ import com.ntanougat.rainbow.base.BasePresenter;
 import com.ntanougat.rainbow.contract.MainPageContract;
 import com.ntanougat.rainbow.entities.Story;
 import com.ntanougat.rainbow.presenter.MainPagePresenter;
+import com.ntanougat.rainbow.ui.activity.NewStoryActivity;
 
 import java.util.ArrayList;
+
+import butterknife.BindView;
 
 /**
  * Created by Peelson on 2017/12/9.
@@ -22,6 +27,9 @@ import java.util.ArrayList;
 public class MainPageFragment extends BaseFragment<MainPageContract.View<Story>, MainPagePresenter> implements MainPageContract.View<Story> {
 
     private String param;
+
+    @BindView(R.id.fbtn_newstory)
+    FloatingActionButton floatingActionButton;
 
     public MainPageFragment() {
 
@@ -63,7 +71,14 @@ public class MainPageFragment extends BaseFragment<MainPageContract.View<Story>,
     }
 
     private void initView(View v) {
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getContext(), NewStoryActivity.class);
+                startActivity(intent);
 
+            }
+        });
     }
 
     private void initData() {

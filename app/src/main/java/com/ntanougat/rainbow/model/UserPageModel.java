@@ -67,6 +67,7 @@ public class UserPageModel implements UserPageContract.Model {
             public void onResponse(Call<IsTureBean> call, Response<IsTureBean> response) {
                 if(response.body().getResult().equals("1")){
                     mListener.onUpLoadUserHeadSeccess();
+                    Log.i("Change userhead seccess",userPhone);
                 }
                 else{
                     mListener.onUpLoadUserHeadFail();
