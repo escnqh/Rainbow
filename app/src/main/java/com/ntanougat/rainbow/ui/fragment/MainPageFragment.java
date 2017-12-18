@@ -15,6 +15,7 @@ import com.ntanougat.rainbow.contract.MainPageContract;
 import com.ntanougat.rainbow.entities.Story;
 import com.ntanougat.rainbow.presenter.MainPagePresenter;
 import com.ntanougat.rainbow.ui.activity.NewStoryActivity;
+import com.ntanougat.rainbow.ui.activity.StoryReadActivity;
 
 import java.util.ArrayList;
 
@@ -76,7 +77,7 @@ public class MainPageFragment extends BaseFragment<MainPageContract.View<Story>,
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getContext(), NewStoryActivity.class);
+                Intent intent=new Intent(getContext(), StoryReadActivity.class);
                 startActivity(intent);
 
             }

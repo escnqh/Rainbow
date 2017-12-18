@@ -12,7 +12,7 @@ public class StoryReadContract extends BaseContract {
 
     public interface Model {
 
-        void loadStory();
+        void loadStory(String storyId);
 
     }
 
@@ -23,7 +23,7 @@ public class StoryReadContract extends BaseContract {
 
     public interface Presenter {
 
-        void requstShowStory();
+        void requstShowStory(String storyId);
 
     }
 

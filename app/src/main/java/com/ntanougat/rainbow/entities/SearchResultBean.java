@@ -8,17 +8,18 @@ import java.util.List;
 
 public class SearchResultBean {
 
-    private List<ArrayBean> array;
 
-    public List<ArrayBean> getArray() {
-        return array;
+    private List<StoryBean> story;
+
+    public List<StoryBean> getStory() {
+        return story;
     }
 
-    public void setArray(List<ArrayBean> array) {
-        this.array = array;
+    public void setStory(List<StoryBean> story) {
+        this.story = story;
     }
 
-    public static class ArrayBean {
+    public static class StoryBean {
         /**
          * uid : 1
          * p_title : 打电话

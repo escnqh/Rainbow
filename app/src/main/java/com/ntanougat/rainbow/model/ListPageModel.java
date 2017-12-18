@@ -40,13 +40,14 @@ public class ListPageModel implements ListPageContract.Model {
         call_search.enqueue(new Callback<SearchResultBean>() {
             @Override
             public void onResponse(Call<SearchResultBean> call, Response<SearchResultBean> response) {
-                if(response.body().getArray().size()!=0){
-                    for (int i=0;i<response.body().getArray().size();i++){
-                        download(response.body().getArray().get(i).getP_id());
+                if(response.body().getStory().size()!=0){
+                    for (int i=0;i<response.body().getStory().size();i++){
+                        download(response.body().getStory().get(i).getP_id());
 //                        if (i==response.body().getArray().size()&&storyBeans.size()!=0){
-                            mListener.onInteractionSeccess(storyBeans);
+
 //                        }
                     }
+                    mListener.onInteractionSeccess(storyBeans);
                 }
             }
 

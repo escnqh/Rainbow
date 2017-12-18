@@ -71,12 +71,14 @@ public class UserPageModel implements UserPageContract.Model {
                 }
                 else{
                     mListener.onUpLoadUserHeadFail();
+                    Log.i("Change userhead failed",userPhone);
                 }
             }
 
             @Override
             public void onFailure(Call<IsTureBean> call, Throwable t) {
                     mListener.onUpLoadUserHeadFail();
+                Log.i("Change userhead failed",userPhone);
             }
         });
 

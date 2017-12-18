@@ -28,6 +28,8 @@ import com.ntanougat.rainbow.ui.fragment.ListPageFragment;
 import com.ntanougat.rainbow.ui.fragment.MainPageFragment;
 import com.ntanougat.rainbow.ui.fragment.UserPageFragment;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -253,6 +255,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onQueryTextSubmit(String query) {
+        if (query!=null)
         listPageFragment.requstShowResult(query);
         Log.i("MMMMMMM",query+"");
         return true;
@@ -260,6 +263,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        return false;
+        if (newText!=null)
+        listPageFragment.requstShowResult(newText);
+        return true;
     }
 }
