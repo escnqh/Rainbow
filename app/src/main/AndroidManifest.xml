@@ -35,6 +35,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.NewStoryActivity"/>
+        <activity android:name=".ui.activity.StoryReadActivity"/>
+        <activity android:name=".ui.activity.ExamActivity"/>
     </application>
 
 </manifest>

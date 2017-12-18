@@ -19,6 +19,7 @@ import com.ntanougat.rainbow.ui.activity.NewStoryActivity;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Peelson on 2017/12/9.
@@ -60,6 +61,7 @@ public class MainPageFragment extends BaseFragment<MainPageContract.View<Story>,
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_mainpage, container, false);
+        ButterKnife.bind(this,v);
         initView(v);
         return v;
     }
