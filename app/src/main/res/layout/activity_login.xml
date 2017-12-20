@@ -2,8 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/login_background">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -70,8 +69,7 @@
             android:layout_above="@+id/use_login"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="60dp"
-            android:src="@drawable/nopic"
-            android:onClick="onClick"/>
+            android:src="@drawable/nopic" />
 
     </RelativeLayout>
 

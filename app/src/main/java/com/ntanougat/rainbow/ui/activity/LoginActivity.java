@@ -83,24 +83,4 @@ public class LoginActivity extends Activity {
             }
         });
     }
-    public void onClick(){
-        EditText use_ED=(EditText) findViewById(R.id.use_login);
-        final String userPhone=use_ED.getText().toString();
-        com.ntanougat.rainbow.ui.view.CircleImageView head=(com.ntanougat.rainbow.ui.view.CircleImageView)findViewById(R.id.civ_userhead);
-        GetUserInfoApi getUserInfoApi=new GetUserInfoApi();
-        GetUserInfoService getUserInfoService=getUserInfoApi.getService();
-        Call<UserInfo> call=getUserInfoService.getState(userPhone);
-        call.enqueue(new Callback<UserInfo>() {
-            @Override
-            public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<UserInfo> call, Throwable t) {
-
-            }
-        });
-
-    }
 }

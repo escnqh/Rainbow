@@ -51,7 +51,7 @@ public class UserPageFragment extends BaseFragment<UserPageContract.View<MyStory
     SwipeRefreshLayout swipeRefreshLayout;
 
     private String param;
-    private String userId="123456";
+    private String userId="131";
 
     public UserPageFragment() {
 

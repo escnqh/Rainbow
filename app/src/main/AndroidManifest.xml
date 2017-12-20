@@ -28,12 +28,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".ui.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.MainActivity"/>
+        <activity android:name=".ui.activity.SignUser"/>
         <activity android:name=".ui.activity.NewStoryActivity"/>
         <activity android:name=".ui.activity.StoryReadActivity"/>
         <activity android:name=".ui.activity.ExamActivity"/>

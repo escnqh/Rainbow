@@ -54,7 +54,7 @@ public class NewStoryActivity extends AppCompatActivity {
     FloatingActionButton fbtn_done;
     private String content;
     private String title;
-    private String userId = "123456";
+    private String userId = "4";
     List<String> imgPathList = new ArrayList<>();
 
 
