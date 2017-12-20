@@ -1,11 +1,16 @@
 package com.ntanougat.rainbow.model;
 
+import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
+
 import com.ntanougat.rainbow.WebService.DownLoadStoryService;
 import com.ntanougat.rainbow.WebService.SearchStorysService;
 import com.ntanougat.rainbow.contract.ListPageContract;
 import com.ntanougat.rainbow.entities.DownLoadStoryBean;
 import com.ntanougat.rainbow.entities.SearchResultBean;
 import com.ntanougat.rainbow.entities.Story;
+import com.ntanougat.rainbow.ui.fragment.ListPageFragment;
 import com.ntanougat.rainbow.webApi.DownLoadStoryApi;
 import com.ntanougat.rainbow.webApi.SearchStoryApi;
 
@@ -25,6 +30,7 @@ public class ListPageModel implements ListPageContract.Model {
     private List<DownLoadStoryBean> storyBeans=new ArrayList<>();
     private ListPageContract.InteractionListener<List<DownLoadStoryBean>> mListener;
     private String param;
+    private Context context=null;
 
     public ListPageModel(String param, ListPageContract.InteractionListener<List<DownLoadStoryBean>> listener) {
         this.param = param;
@@ -43,11 +49,14 @@ public class ListPageModel implements ListPageContract.Model {
                 if(response.body().getStory().size()!=0){
                     for (int i=0;i<response.body().getStory().size();i++){
                         download(response.body().getStory().get(i).getP_id());
-//                        if (i==response.body().getArray().size()&&storyBeans.size()!=0){
 
-//                        }
                     }
-                    mListener.onInteractionSeccess(storyBeans);
+                    if (storyBeans.size()!=0){
+                        mListener.onInteractionSeccess(storyBeans);
+                    }else {
+                        Log.i("error            ","storyBeans is null");
+                    }
+
                 }
             }
 

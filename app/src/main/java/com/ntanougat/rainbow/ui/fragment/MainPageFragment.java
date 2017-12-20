@@ -77,9 +77,8 @@ public class MainPageFragment extends BaseFragment<MainPageContract.View<Story>,
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getContext(), StoryReadActivity.class);
+                Intent intent=new Intent(getContext(),NewStoryActivity.class);
                 startActivity(intent);
-
             }
         });
     }

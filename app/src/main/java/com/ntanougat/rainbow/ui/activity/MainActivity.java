@@ -263,8 +263,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        if (newText!=null)
-        listPageFragment.requstShowResult(newText);
-        return true;
+        return false;
     }
 }

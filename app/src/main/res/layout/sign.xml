@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_background">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:text="注册用户"
+            android:textColor="@color/md_orange_700" />
+
+        <EditText
+            android:id="@+id/use_login"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="180dp"
+            android:hint="请输入账号"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/pwd_login"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/use_login"
+            android:layout_alignStart="@+id/use_login"
+            android:layout_below="@+id/use_login"
+            android:layout_marginTop="5dp"
+            android:hint="请输入密码"
+            android:singleLine="true"
+            android:inputType="textPassword"/>
+
+        <EditText
+            android:id="@+id/pwd_Islogin"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/pwd_login"
+            android:layout_alignStart="@+id/pwd_login"
+            android:layout_below="@+id/pwd_login"
+            android:layout_marginTop="5dp"
+            android:hint="请确认密码"
+            android:singleLine="true"
+            android:inputType="textPassword"/>
+        <EditText
+            android:id="@+id/use_name"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/pwd_Islogin"
+            android:layout_alignStart="@+id/pwd_Islogin"
+            android:layout_below="@+id/pwd_Islogin"
+            android:layout_marginTop="5dp"
+            android:hint="请输入昵称"
+            android:singleLine="true" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:id="@+id/OK"
+            android:background="@color/COLOR_LINECHAR_LINE_MAIN"
+            android:text="完成"
+            android:layout_marginTop="30dp"
+            android:layout_below="@id/use_name"
+            android:layout_alignLeft="@id/use_name"/>
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:id="@+id/Cacel"
+            android:background="@color/line_and_outline_grey"
+            android:text="放弃"
+            android:layout_marginTop="30dp"
+            android:layout_below="@id/use_name"
+            android:layout_alignRight="@id/use_name"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

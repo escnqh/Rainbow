@@ -43,7 +43,7 @@ public class StoryReadActivity extends AppCompatActivity {
     @BindView(R.id.btn_startExam)
     Button btn_startExam;
     private String param;
-    private String storyId="1";
+    private String storyId=null;
 
     private CardPagerAdapter mCardAdapter;
     private ShadowTransformer mCardShadowTransformer;
@@ -57,7 +57,7 @@ public class StoryReadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_read);
         ButterKnife.bind(this);
         Intent intent = getIntent();
-        //storyId=intent.getStringExtra("storyId");
+        storyId=intent.getStringExtra("storyId");
         loadStory(storyId);
         initView();
     }
@@ -85,7 +85,7 @@ public class StoryReadActivity extends AppCompatActivity {
                 if (response.body() != null) {
                     Log.i("downloadSeccess", "  " + storyId);
                     showStory(response.body());
-                }
+                }else
                 Log.i("downloadFailed", "  " + storyId);
             }
 

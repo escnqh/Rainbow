@@ -42,7 +42,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     @Override
     public void onBindViewHolder(final SearchResultAdapter.ViewHolder holder, int position) {
         if(myStorys.get(position).getStory().size()!=0){
-            SetImageBitmap(holder,myStorys.get(position).getStory().get(0).getPicture_url());
+            SetImageBitmap(holder,"http://118.89.50.109:8080"+myStorys.get(position).getStory().get(0).getPicture_url());
         }
         Log.i("LoadRecyclerViewPosi","     "+position);
         String title=myStorys.get(position).getP_title();

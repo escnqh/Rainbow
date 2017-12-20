@@ -20,6 +20,7 @@ import com.ntanougat.rainbow.contract.UserPageContract;
 import com.ntanougat.rainbow.entities.MyStorysBean;
 import com.ntanougat.rainbow.entities.Story;
 import com.ntanougat.rainbow.presenter.UserPagePresenter;
+import com.ntanougat.rainbow.ui.activity.StoryReadActivity;
 import com.ntanougat.rainbow.ui.view.CircleImageView;
 import com.squareup.picasso.Picasso;
 
@@ -131,14 +132,16 @@ public class UserPageFragment extends BaseFragment<UserPageContract.View<MyStory
     }
 
     @Override
-    public void refreshMyStorys(List<MyStorysBean.ArrayBean> arrayList) {
+    public void refreshMyStorys(final List<MyStorysBean.ArrayBean> arrayList) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         list_mystorys.setLayoutManager(linearLayoutManager);
         MyStorysAdapter myStorysAdapter = new MyStorysAdapter(arrayList, getActivity());
         myStorysAdapter.SetOnItemClickListener(new MyStorysAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                //跳转
+                Intent intent=new Intent(getContext(), StoryReadActivity.class);
+                intent.putExtra("storyId",arrayList.get(position).getP_id());
+                startActivity(intent);
             }
 
             @Override

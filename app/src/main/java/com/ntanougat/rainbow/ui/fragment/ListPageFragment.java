@@ -1,5 +1,6 @@
 package com.ntanougat.rainbow.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +19,7 @@ import com.ntanougat.rainbow.contract.ListPageContract;
 import com.ntanougat.rainbow.entities.DownLoadStoryBean;
 import com.ntanougat.rainbow.entities.Story;
 import com.ntanougat.rainbow.presenter.ListPagePresenter;
+import com.ntanougat.rainbow.ui.activity.StoryReadActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +85,7 @@ public class ListPageFragment extends BaseFragment<ListPageContract.View<DownLoa
     }
 
     @Override
-    public void showResultList(List<DownLoadStoryBean> arrayList) {
+    public void showResultList(final List<DownLoadStoryBean> arrayList) {
         ll_search.setVisibility(View.GONE);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         searchResult.setLayoutManager(linearLayoutManager);
@@ -91,7 +93,9 @@ public class ListPageFragment extends BaseFragment<ListPageContract.View<DownLoa
         searchResultAdapter.SetOnItemClickListener(new SearchResultAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                Intent intent=new Intent(getContext(), StoryReadActivity.class);
+                intent.putExtra("storyId",arrayList.get(position).getP_id());
+                startActivity(intent);
             }
 
             @Override

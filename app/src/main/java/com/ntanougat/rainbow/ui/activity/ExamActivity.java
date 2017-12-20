@@ -26,6 +26,8 @@ import com.ntanougat.rainbow.presenter.ExamPresenter;
 import com.ntanougat.rainbow.utils.ShadowTransformer;
 import com.ntanougat.rainbow.webApi.DownLoadStoryApi;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -81,7 +83,9 @@ public class ExamActivity extends AppCompatActivity{
             public void onResponse(Call<DownLoadStoryBean> call, Response<DownLoadStoryBean> response) {
                 if (response.body() != null) {
                     Log.i("downloadSeccess", "  " + storyId);
-                    showStory(response.body());
+                    List<DownLoadStoryBean.StoryBean> list=response.body().getStory();
+                    Collections.shuffle(list);
+                    showStory(list);
                 }
                 Log.i("downloadFailed", "  " + storyId);
             }
@@ -93,8 +97,7 @@ public class ExamActivity extends AppCompatActivity{
         });
     }
 
-    public void showStory(DownLoadStoryBean story) {
-        List<DownLoadStoryBean.StoryBean> situations = story.getStory();
+    public void showStory(List<DownLoadStoryBean.StoryBean> situations) {
         mCardAdapter = new ExamCardPagerAdapter(this);
         for (int i = 0; i < situations.size(); i++) {
             DownLoadStoryBean.StoryBean situation = situations.get(i);

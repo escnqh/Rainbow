@@ -1,6 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_background">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/Login_btn"
+            android:layout_marginBottom="97dp"
+            android:layout_toStartOf="@+id/Login_btn"
+            android:text="账号" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView"
+            android:layout_alignTop="@+id/textView"
+            android:layout_marginTop="45dp"
+            android:text="密码" />
+
+        <EditText
+            android:id="@+id/use_login"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView"
+            android:layout_alignBottom="@+id/textView"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/textView"
+            android:hint="输入账号" />
+        <EditText
+            android:id="@+id/pwd_login"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/use_login"
+            android:layout_below="@+id/use_login"
+            android:hint="输入密码"
+            android:inputType="textPassword"/>
+
+        <Button
+            android:id="@+id/Login_btn"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:layout_above="@+id/Sign_btn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/shape"
+            android:text="登录" />
+        <Button
+            android:id="@+id/Sign_btn"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/Login_btn"
+            android:layout_marginBottom="80dp"
+            android:background="@drawable/shape"
+            android:text="注册" />
+
+        <com.ntanougat.rainbow.ui.view.CircleImageView
+            android:id="@+id/civ_userhead"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_above="@+id/use_login"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="60dp"
+            android:src="@drawable/nopic"
+            android:onClick="onClick"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>
