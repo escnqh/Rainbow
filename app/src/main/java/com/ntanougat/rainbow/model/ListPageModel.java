@@ -1,6 +1,7 @@
 package com.ntanougat.rainbow.model;
 
 import android.content.Context;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -51,11 +52,13 @@ public class ListPageModel implements ListPageContract.Model {
                         download(response.body().getStory().get(i).getP_id());
 
                     }
-                    if (storyBeans.size()!=0){
-                        mListener.onInteractionSeccess(storyBeans);
-                    }else {
-                        Log.i("error            ","storyBeans is null");
-                    }
+                    Handler handler=new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            mListener.onInteractionSeccess(storyBeans);
+                        }
+                    },1000);
 
                 }
             }

@@ -186,6 +186,10 @@ public class NewStoryActivity extends AppCompatActivity {
             public void onResponse(Call<IsTureBean> call, Response<IsTureBean> response) {
                 if (response.body().getResult().equals("1")) {
                     Log.i("uploadStorySeccess", userId);
+                    Toast.makeText(getApplicationContext(),"上传成功~",Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(NewStoryActivity.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
                 if(response.body().getResult().equals("0")){
                     Toast.makeText(getApplicationContext(),"上传失败~",Toast.LENGTH_SHORT).show();
@@ -198,6 +202,11 @@ public class NewStoryActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     @Override

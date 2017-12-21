@@ -3,6 +3,7 @@ package com.ntanougat.rainbow.contract;
 import com.ntanougat.rainbow.base.BaseContract;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Peelson on 2017/12/10.
@@ -18,9 +19,11 @@ public class MainPageContract extends BaseContract{
 
     }
 
-    public interface View<T>{
+    public interface View<T,Y>{
 
-        void refreshAll(ArrayList<T> arrayList);
+        void refreshMainList(List<T> arrayList);
+
+        void refreshCircleList(List<Y> list);
     }
 
     public interface Presenter{
@@ -28,9 +31,11 @@ public class MainPageContract extends BaseContract{
         void requstRefreshAll();
     }
 
-    public interface InteractionListener<T>{
+    public interface InteractionListener<T,Y>{
 
-        void onInteractionSeccess(T t);
+        void onMainListLoadSeccess(T t);
+
+        void onCircleListLoadSeccess(Y y);
 
         void onInteractionFail(int errorCode, String errorMsg);
 

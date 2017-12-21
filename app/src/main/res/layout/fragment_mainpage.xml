@@ -1,8 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:loonggg="http://schemas.android.com/apk/res-auto"
+    xmlns:qt="http://schemas.android.com/tools">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <me.wangyuwei.banner.BannerView
+                android:id="@+id/banner_view"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                qt:qt_line_color="#688fdb" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/list_allstorys">
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+    </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:layout_alignParentBottom="true"

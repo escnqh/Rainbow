@@ -2,6 +2,7 @@ package com.ntanougat.rainbow.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,9 +27,12 @@ import retrofit2.Response;
 
 public class LoginActivity extends Activity {
 
+    private SharedPreferences sharedPreferences;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        sharedPreferences=getSharedPreferences("loginInfo",MODE_PRIVATE);
         initLogin();
         initSigin();
     }
@@ -56,6 +60,10 @@ public class LoginActivity extends Activity {
                             Intent intent_login=new Intent(LoginActivity.this, MainActivity.class);
                             intent_login.putExtra("uphone",userPhone );
                             intent_login.putExtra("upsw", userPassword);
+                            SharedPreferences.Editor editor=sharedPreferences.edit();
+                            editor.putBoolean("isLogin",true);
+                            editor.putString("userPhone",userPhone);
+                            editor.commit();
                             startActivity(intent_login);
                             finish();
                         }

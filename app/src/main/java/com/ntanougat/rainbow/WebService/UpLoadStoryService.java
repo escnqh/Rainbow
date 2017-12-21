@@ -23,6 +23,9 @@ public interface UpLoadStoryService {
             @Part("g_id") RequestBody g_id1,
             @Part("g_content") RequestBody g_content1,
             @Part MultipartBody.Part file1);
+
+    @Multipart
+    @POST("ulStory")
     Call<IsTureBean> getByTwo(
             @Part("uid") RequestBody userId,
             @Part("title") RequestBody storyTitle,
@@ -32,6 +35,9 @@ public interface UpLoadStoryService {
             @Part("g_id") RequestBody g_id2,
             @Part("g_content") RequestBody g_content2,
             @Part MultipartBody.Part file2);
+
+    @Multipart
+    @POST("ulStory")
     Call<IsTureBean> getByThree(
             @Part("uid") RequestBody userId,
             @Part("title") RequestBody storyTitle,
@@ -44,6 +50,9 @@ public interface UpLoadStoryService {
             @Part("g_id") RequestBody g_id3,
             @Part("g_content") RequestBody g_content3,
             @Part MultipartBody.Part file3);
+
+    @Multipart
+    @POST("ulStory")
     Call<IsTureBean> getByFour(
             @Part("uid") RequestBody userId,
             @Part("title") RequestBody storyTitle,
@@ -59,6 +68,9 @@ public interface UpLoadStoryService {
             @Part("g_id") RequestBody g_id4,
             @Part("g_content") RequestBody g_content4,
             @Part MultipartBody.Part file4);
+
+    @Multipart
+    @POST("ulStory")
     Call<IsTureBean> getByFive(
             @Part("uid") RequestBody userId,
             @Part("title") RequestBody storyTitle,

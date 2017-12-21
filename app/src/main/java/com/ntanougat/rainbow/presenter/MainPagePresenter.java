@@ -2,24 +2,28 @@ package com.ntanougat.rainbow.presenter;
 
 import com.ntanougat.rainbow.base.BasePresenter;
 import com.ntanougat.rainbow.contract.MainPageContract;
+import com.ntanougat.rainbow.entities.MainListStoryBean;
+import com.ntanougat.rainbow.entities.RotationPicBean;
 import com.ntanougat.rainbow.entities.Story;
 import com.ntanougat.rainbow.model.MainPageModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Peelson on 2017/12/10.
  */
 
-public class MainPagePresenter extends BasePresenter<MainPageContract.View<Story>> implements MainPageContract.InteractionListener,MainPageContract.Presenter{
+public class MainPagePresenter extends BasePresenter<MainPageContract.View<MainListStoryBean.StoryBean,RotationPicBean.StoryBean>> implements MainPageContract.InteractionListener<List<MainListStoryBean.StoryBean>,List<RotationPicBean.StoryBean>>,MainPageContract.Presenter{
 
-    private MainPageContract.View<Story> mView;
+    private MainPageContract.View<MainListStoryBean.StoryBean,RotationPicBean.StoryBean> mView;
     private MainPageContract.Model mModel;
     private String param;
-    private ArrayList<Story> mList;
+    private List<MainListStoryBean.StoryBean> mMainList;
+    private List<RotationPicBean.StoryBean> mCircleList;
 
 
-    public MainPagePresenter(String param,MainPageContract.View<Story> view){
+    public MainPagePresenter(String param,MainPageContract.View<MainListStoryBean.StoryBean,RotationPicBean.StoryBean> view){
         this.param=param;
         this.mView=view;
         mModel=new MainPageModel(param,this);
@@ -27,12 +31,18 @@ public class MainPagePresenter extends BasePresenter<MainPageContract.View<Story
 
     @Override
     public void start() {
-
+        mModel.loadCircleList();
+        mModel.loadMainList();
     }
 
     @Override
-    public void onInteractionSeccess(Object o) {
+    public void onMainListLoadSeccess(List<MainListStoryBean.StoryBean> list) {
+        mView.refreshMainList(list);
+    }
 
+    @Override
+    public void onCircleListLoadSeccess(List<RotationPicBean.StoryBean> list) {
+        mView.refreshCircleList(list);
     }
 
     @Override
@@ -42,6 +52,6 @@ public class MainPagePresenter extends BasePresenter<MainPageContract.View<Story
 
     @Override
     public void requstRefreshAll() {
-
+        mModel.loadMainList();
     }
 }

@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private SearchView searchView;
 
 
-    private String userId;
+    private String userPhone;
     private String userName;
     private int toolbarchange =0;
 
@@ -62,10 +62,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         fragmentManager=getSupportFragmentManager();
+        SharedPreferences sharedPreferences=getSharedPreferences("loginInfo",MODE_PRIVATE);
+        userPhone=sharedPreferences.getString("userPhone",null);
+        getUserInfo();
         initView();
         initFragment();
         initPermission();
-        SharedPreferences sharedPreferences=getSharedPreferences("userdata",MODE_PRIVATE);
+    }
+
+    private void getUserInfo() {
 
     }
 
@@ -114,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 toolbarchange=0;
                 onPrepareOptionsMenu(mainMenu);
                 if(mainPageFragment==null){
-                    mainPageFragment= MainPageFragment.newInstance(null);
+                    mainPageFragment= MainPageFragment.newInstance(userPhone);
                     transaction.add(R.id.frame_fragment,mainPageFragment);
                 }else {
                     transaction.show(mainPageFragment);
@@ -124,17 +129,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 toolbarchange=1;
                 onPrepareOptionsMenu(mainMenu);
                 if(listPageFragment==null){
-                    listPageFragment= ListPageFragment.newInstance(null);
+                    listPageFragment= ListPageFragment.newInstance(userPhone);
                     transaction.add(R.id.frame_fragment,listPageFragment);
                 }else {
                     transaction.show(listPageFragment);
                 }
                 break;
             case 2:
-                toolbarchange=0;
+                toolbarchange=2;
                 onPrepareOptionsMenu(mainMenu);
                 if (userPageFragment==null){
-                    userPageFragment=UserPageFragment.newInstance(userId);
+                    userPageFragment=UserPageFragment.newInstance(userPhone);
                     transaction.add(R.id.frame_fragment,userPageFragment);
                 }else {
                     transaction.show(userPageFragment);
@@ -173,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             menu.clear();
             getMenuInflater().inflate(R.menu.toolbar_mainpage_activity,menu);
             return true;
-        }else {
+        }else if (toolbarchange==1){
             menu.clear();
             getMenuInflater().inflate(R.menu.toolbar_listpage_activity,menu);
             MenuItem menuItem=menu.findItem(R.id.toolbar_search);
@@ -182,6 +187,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 searchView= (SearchView) view;
                 searchView.setOnQueryTextListener(this);
             }
+            return true;
+        }else {
+            menu.clear();
+            getMenuInflater().inflate(R.menu.toolbar_userinfopage_activity,menu);
             return true;
         }
     }
@@ -194,8 +203,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
                 break;
-            case R.id.toolbar_search:
-
+            case R.id.toolbar_exit:
+                SharedPreferences sharedPreferences=getSharedPreferences("loginInfo",MODE_PRIVATE);
+                SharedPreferences.Editor editor=sharedPreferences.edit();
+                editor.putBoolean("isLogin",false);
+                editor.commit();
+                Intent intent1=new Intent(MainActivity.this,LoginActivity.class);
+                startActivity(intent1);
+                finish();
                 break;
             default:
                 break;
