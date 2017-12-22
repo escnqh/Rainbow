@@ -6,6 +6,8 @@ import com.ntanougat.rainbow.entities.DownLoadStoryBean;
 import com.ntanougat.rainbow.entities.Story;
 import com.ntanougat.rainbow.model.StoryReadModel;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 
 /**
@@ -39,8 +41,9 @@ public class StoryReadPresenter extends BasePresenter<StoryReadContract.View<Dow
 
     }
 
+
     @Override
-    public void start() {
+    public void start(@Nullable String userPhone, @Nullable String userId) {
 
     }
 }

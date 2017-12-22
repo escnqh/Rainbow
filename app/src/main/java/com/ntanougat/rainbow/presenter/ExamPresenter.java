@@ -5,6 +5,8 @@ import com.ntanougat.rainbow.contract.ExamContract;
 import com.ntanougat.rainbow.entities.Story;
 import com.ntanougat.rainbow.model.ExamModel;
 
+import org.jetbrains.annotations.Nullable;
+
 /**
  * Created by Peelson on 2017/12/13.
  */
@@ -36,8 +38,9 @@ public class ExamPresenter extends BasePresenter<ExamContract.View<Story>> imple
 
     }
 
+
     @Override
-    public void start() {
+    public void start(@Nullable String userPhone, @Nullable String userId) {
 
     }
 }

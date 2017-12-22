@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ import retrofit2.Response;
 public class LoginActivity extends Activity {
 
     private SharedPreferences sharedPreferences;
+    private String userPhone;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +46,7 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
                 EditText use_ED=(EditText) findViewById(R.id.use_login);
                 EditText pwd_ED=(EditText)findViewById(R.id.pwd_login);
-                final String userPhone=use_ED.getText().toString();
+                userPhone=use_ED.getText().toString();
                 final String userPassword=pwd_ED.getText().toString();
                 //final String userPhone= (String) getIntent().getSerializableExtra("uphone");
                 //final String userPassword= (String) getIntent().getSerializableExtra("upsw");
@@ -55,17 +57,12 @@ public class LoginActivity extends Activity {
                     @Override
                     public void onResponse(Call<IsTureBean> call, Response<IsTureBean> response) {
                         if(response.body().getResult().equals("1")) {
+                            Log.i("Login Seccess","LOGINNNNNNNNN"+userPhone);
+
+                            getUserInfo();
                             /*Intent intent_login = new Intent(LoginActivity.this, TestActivity.class)
                                     .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);*/
-                            Intent intent_login=new Intent(LoginActivity.this, MainActivity.class);
-                            intent_login.putExtra("uphone",userPhone );
-                            intent_login.putExtra("upsw", userPassword);
-                            SharedPreferences.Editor editor=sharedPreferences.edit();
-                            editor.putBoolean("isLogin",true);
-                            editor.putString("userPhone",userPhone);
-                            editor.commit();
-                            startActivity(intent_login);
-                            finish();
+
                         }
                         else{
                             Toast.makeText(LoginActivity.this, "账号或密码错误！请检查...", Toast.LENGTH_SHORT).show();
@@ -76,6 +73,37 @@ public class LoginActivity extends Activity {
                         Toast.makeText(LoginActivity.this, "登录失败，请检查网络设置", Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+        });
+    }
+
+    private void getUserInfo() {
+
+        GetUserInfoApi getUserInfoApi=new GetUserInfoApi();
+        GetUserInfoService getUserInfoService=getUserInfoApi.getService();
+        Call<UserInfo> call=getUserInfoService.getState(userPhone);
+        call.enqueue(new Callback<UserInfo>() {
+            @Override
+            public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
+                if(response.body()!=null){
+
+                }
+                Intent intent_login=new Intent(LoginActivity.this, MainActivity.class);
+                intent_login.putExtra("uphone",userPhone );
+                intent_login.putExtra("userId", response.body().getUid());
+                SharedPreferences.Editor editor=sharedPreferences.edit();
+                editor.putBoolean("isLogin",true);
+                editor.putString("userPhone",userPhone);
+                editor.putString("userId",response.body().getUid());
+                editor.commit();
+                startActivity(intent_login);
+                Log.i("GetUserInfoSeccess",userPhone+"   "+response.body().getUid());
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<UserInfo> call, Throwable t) {
+
             }
         });
     }

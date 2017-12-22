@@ -6,6 +6,8 @@ import com.ntanougat.rainbow.entities.DownLoadStoryBean;
 import com.ntanougat.rainbow.entities.Story;
 import com.ntanougat.rainbow.model.ListPageModel;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,13 +39,14 @@ public class ListPagePresenter extends BasePresenter<ListPageContract.View<DownL
 
     }
 
-    @Override
-    public void start() {
-
-    }
 
     @Override
     public void requstShowResult(String text) {
         mModel.loadSearchResult(text);
+    }
+
+    @Override
+    public void start(@Nullable String userPhone, @Nullable String userId) {
+
     }
 }

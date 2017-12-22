@@ -7,6 +7,8 @@ import com.ntanougat.rainbow.entities.RotationPicBean;
 import com.ntanougat.rainbow.entities.Story;
 import com.ntanougat.rainbow.model.MainPageModel;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,11 +31,6 @@ public class MainPagePresenter extends BasePresenter<MainPageContract.View<MainL
         mModel=new MainPageModel(param,this);
     }
 
-    @Override
-    public void start() {
-        mModel.loadCircleList();
-        mModel.loadMainList();
-    }
 
     @Override
     public void onMainListLoadSeccess(List<MainListStoryBean.StoryBean> list) {
@@ -52,6 +49,12 @@ public class MainPagePresenter extends BasePresenter<MainPageContract.View<MainL
 
     @Override
     public void requstRefreshAll() {
+        mModel.loadMainList();
+    }
+
+    @Override
+    public void start(@Nullable String userPhone, @Nullable String userId) {
+        mModel.loadCircleList();
         mModel.loadMainList();
     }
 }

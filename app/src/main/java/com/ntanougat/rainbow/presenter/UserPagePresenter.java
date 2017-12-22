@@ -29,12 +29,12 @@ public class UserPagePresenter extends BasePresenter<UserPageContract.View<MySto
 
     @Override
     public void requestRefreshMyStorys(String userId) {
-        mModel.loadMyStorys();
+        mModel.loadMyStorys(userId);
     }
 
     @Override
-    public void requestChangeUserName() {
-        mModel.loadUserInfo();
+    public void requestChangeUserName(String userId) {
+        mModel.loadUserInfo(userId);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class UserPagePresenter extends BasePresenter<UserPageContract.View<MySto
 
     @Override
     public void requsetDeleteOneStory() {
-        mModel.loadMyStorys();
+
     }
 
     @Override
@@ -63,8 +63,8 @@ public class UserPagePresenter extends BasePresenter<UserPageContract.View<MySto
     }
 
     @Override
-    public void onUpLoadUserHeadSeccess() {
-        mModel.loadUserInfo();
+    public void onUpLoadUserHeadSeccess(String userPhone) {
+        mModel.loadUserInfo(userPhone);
     }
 
     @Override
@@ -73,8 +73,8 @@ public class UserPagePresenter extends BasePresenter<UserPageContract.View<MySto
     }
 
     @Override
-    public void onChangeUserNameSeccess() {
-        mModel.loadUserInfo();
+    public void onChangeUserNameSeccess(String userPhone) {
+        mModel.loadUserInfo(userPhone);
     }
 
     @Override
@@ -99,8 +99,8 @@ public class UserPagePresenter extends BasePresenter<UserPageContract.View<MySto
     }
 
     @Override
-    public void start() {
-        mModel.loadUserInfo();
-        mModel.loadMyStorys();
+    public void start(String userPhone,String userId) {
+        mModel.loadUserInfo(userPhone);
+        mModel.loadMyStorys(userId);
     }
 }

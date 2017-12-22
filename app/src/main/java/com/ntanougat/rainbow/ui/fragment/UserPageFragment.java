@@ -18,13 +18,11 @@ import com.ntanougat.rainbow.adapter.MyStorysAdapter;
 import com.ntanougat.rainbow.base.BaseFragment;
 import com.ntanougat.rainbow.contract.UserPageContract;
 import com.ntanougat.rainbow.entities.MyStorysBean;
-import com.ntanougat.rainbow.entities.Story;
 import com.ntanougat.rainbow.presenter.UserPagePresenter;
 import com.ntanougat.rainbow.ui.activity.StoryReadActivity;
 import com.ntanougat.rainbow.ui.view.CircleImageView;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -51,16 +49,18 @@ public class UserPageFragment extends BaseFragment<UserPageContract.View<MyStory
     SwipeRefreshLayout swipeRefreshLayout;
 
     private String param;
-    private String userId="131";
+    private String userPhone;
+    private String userId;
 
     public UserPageFragment() {
 
     }
 
-    public static UserPageFragment newInstance(String param) {
+    public static UserPageFragment newInstance(String param,String userId) {
         UserPageFragment userPageFragment = new UserPageFragment();
         Bundle args = new Bundle();
         args.putString("param", param);
+        args.putString("userId",userId);
         userPageFragment.setArguments(args);
         return userPageFragment;
     }
@@ -69,6 +69,8 @@ public class UserPageFragment extends BaseFragment<UserPageContract.View<MyStory
     public void onCreate(@Nullable Bundle savedInstanceState) {
         if (getArguments() != null) {
             param = getArguments().getString("param");
+            userId=getArguments().getString("userId");
+            userPhone=param;
         }
         super.onCreate(savedInstanceState);
     }
@@ -94,7 +96,7 @@ public class UserPageFragment extends BaseFragment<UserPageContract.View<MyStory
     }
 
     private void initData() {
-        mPresenter.start();
+        mPresenter.start(userPhone,userId);
     }
 
     private void initView(View v) {
@@ -102,14 +104,14 @@ public class UserPageFragment extends BaseFragment<UserPageContract.View<MyStory
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mPresenter.requestRefreshMyStorys(userId);
+                mPresenter.requestRefreshMyStorys(userPhone);
             }
         });
 
         iv_editusername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mPresenter.requestChangeUserName();
+                mPresenter.requestChangeUserName(userPhone);
             }
         });
 
@@ -168,7 +170,7 @@ public class UserPageFragment extends BaseFragment<UserPageContract.View<MyStory
 
     @Override
     public void deleteOneStory() {
-        mPresenter.requestRefreshMyStorys(userId);
+        mPresenter.requestRefreshMyStorys(userPhone);
     }
 
 

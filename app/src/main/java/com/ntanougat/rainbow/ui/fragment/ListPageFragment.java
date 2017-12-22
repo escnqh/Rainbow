@@ -77,7 +77,7 @@ public class ListPageFragment extends BaseFragment<ListPageContract.View<DownLoa
     }
 
     private void initData() {
-        mPresenter.start();
+        mPresenter.start(null,null);
     }
 
     private void initView(View v) {

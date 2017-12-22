@@ -23,12 +23,9 @@ import android.view.View;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.ntanougat.rainbow.R;
-import com.ntanougat.rainbow.contract.MainPageContract;
 import com.ntanougat.rainbow.ui.fragment.ListPageFragment;
 import com.ntanougat.rainbow.ui.fragment.MainPageFragment;
 import com.ntanougat.rainbow.ui.fragment.UserPageFragment;
-
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private String userPhone;
-    private String userName;
+    private String userId;
     private int toolbarchange =0;
 
     @BindView(R.id.navigation_bar_main)
@@ -64,14 +61,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fragmentManager=getSupportFragmentManager();
         SharedPreferences sharedPreferences=getSharedPreferences("loginInfo",MODE_PRIVATE);
         userPhone=sharedPreferences.getString("userPhone",null);
-        getUserInfo();
+        userId=sharedPreferences.getString("userId",null);
         initView();
         initFragment();
         initPermission();
-    }
-
-    private void getUserInfo() {
-
     }
 
     private void initView() {
@@ -119,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 toolbarchange=0;
                 onPrepareOptionsMenu(mainMenu);
                 if(mainPageFragment==null){
-                    mainPageFragment= MainPageFragment.newInstance(userPhone);
+                    mainPageFragment= MainPageFragment.newInstance(userId);
                     transaction.add(R.id.frame_fragment,mainPageFragment);
                 }else {
                     transaction.show(mainPageFragment);
@@ -139,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 toolbarchange=2;
                 onPrepareOptionsMenu(mainMenu);
                 if (userPageFragment==null){
-                    userPageFragment=UserPageFragment.newInstance(userPhone);
+                    userPageFragment=UserPageFragment.newInstance(userPhone,userId);
                     transaction.add(R.id.frame_fragment,userPageFragment);
                 }else {
                     transaction.show(userPageFragment);
@@ -164,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initFragment() {
-        mainPageFragment=new MainPageFragment();
+        mainPageFragment=MainPageFragment.newInstance(userId);
         FragmentTransaction transaction=fragmentManager.beginTransaction();
         transaction.replace(R.id.frame_fragment,mainPageFragment);
         transaction.commit();

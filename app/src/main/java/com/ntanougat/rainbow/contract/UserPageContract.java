@@ -13,9 +13,9 @@ public class UserPageContract extends BaseContract {
 
     public interface Model {
 
-        void loadUserInfo();
+        void loadUserInfo(String userPhone);
 
-        void loadMyStorys();
+        void loadMyStorys(String userId);
 
         void upLoadUserHead(String localPicturePath);
 
@@ -37,7 +37,7 @@ public class UserPageContract extends BaseContract {
 
         void requestRefreshMyStorys(String userId);
 
-        void requestChangeUserName();
+        void requestChangeUserName(String userPhone);
 
         void requsetChangeUserPortrait(String localPicturePath);
 
@@ -50,9 +50,9 @@ public class UserPageContract extends BaseContract {
 
         void onLoadMyStorysSeccess(T t);
         void onLoadMyStorysFail();
-        void onUpLoadUserHeadSeccess();
+        void onUpLoadUserHeadSeccess(String userPhone);
         void onUpLoadUserHeadFail();
-        void onChangeUserNameSeccess();
+        void onChangeUserNameSeccess(String userPhone);
         void onChangeUserNameFail();
         void onLoadUserInfoSeccess(String userName,String headUrl);
         void onLoadUserInfoFail();

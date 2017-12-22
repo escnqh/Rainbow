@@ -54,6 +54,7 @@ public class MainPageFragment extends Fragment {
     @BindView(R.id.list_allstorys)
     RecyclerView listAllstorys;
     private String param;
+    private String userId;
 
     @BindView(R.id.fbtn_newstory)
     FloatingActionButton floatingActionButton;
@@ -77,7 +78,8 @@ public class MainPageFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         if (getArguments() != null) {
             param = getArguments().getString("param");
-
+            userId=param;
+            Log.i("MianpageGetUserId","  "+userId);
         }
         super.onCreate(savedInstanceState);
 
@@ -216,6 +218,7 @@ public class MainPageFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), NewStoryActivity.class);
+                intent.putExtra("userId",userId);
                 startActivity(intent);
             }
         });

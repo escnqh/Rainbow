@@ -1,5 +1,7 @@
 package com.ntanougat.rainbow.base;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 
@@ -36,5 +38,5 @@ public abstract class BasePresenter<V> {
     /**
      * 用于一些初始化方法
      */
-    public abstract void start();
+    public abstract void start(@Nullable String userPhone,@Nullable String userId);
 }

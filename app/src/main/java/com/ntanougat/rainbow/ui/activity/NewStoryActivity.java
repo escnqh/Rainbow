@@ -54,7 +54,7 @@ public class NewStoryActivity extends AppCompatActivity {
     FloatingActionButton fbtn_done;
     private String content;
     private String title;
-    private String userId = "4";
+    private String userId ;
     List<String> imgPathList = new ArrayList<>();
 
 
@@ -67,6 +67,9 @@ public class NewStoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newstory);
         ButterKnife.bind(this);
+        Intent intent=getIntent();
+        userId=intent.getStringExtra("userId");
+        Log.i("getUserId","     "+userId);
         initView();
     }
 

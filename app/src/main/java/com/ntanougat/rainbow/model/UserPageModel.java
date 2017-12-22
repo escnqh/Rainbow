@@ -33,7 +33,7 @@ public class UserPageModel implements UserPageContract.Model {
     private UserPageContract.InteractionListener<List<MyStorysBean.ArrayBean>> mListener;
     private String param;
     private String userId;
-    private String userPhone="123456";
+    private String userPhone;
     private String userName;
     private String headUrl;
 
@@ -44,13 +44,13 @@ public class UserPageModel implements UserPageContract.Model {
     }
 
     @Override
-    public void loadUserInfo() {
-        getUserInfo();
+    public void loadUserInfo(String userphone) {
+        getUserInfo(userphone);
     }
 
     @Override
-    public void loadMyStorys() {
-        getMyStory(userId);
+    public void loadMyStorys(String userid) {
+        getMyStory(userid);
     }
 
     @Override
@@ -60,13 +60,13 @@ public class UserPageModel implements UserPageContract.Model {
         File file=new File(localPicturePath);
         RequestBody requestBody=RequestBody.create(MediaType.parse("multipart/form-data"),file);
         MultipartBody.Part body=MultipartBody.Part.createFormData("file",file.getName(),requestBody);
-        RequestBody userphone=RequestBody.create(null,userPhone);
+        final RequestBody userphone=RequestBody.create(null,userPhone);
         Call<IsTureBean> call_changePortrait=changePortraitService.getState(userphone,body);
         call_changePortrait.enqueue(new Callback<IsTureBean>() {
             @Override
             public void onResponse(Call<IsTureBean> call, Response<IsTureBean> response) {
                 if(response.body().getResult().equals("1")){
-                    mListener.onUpLoadUserHeadSeccess();
+                    mListener.onUpLoadUserHeadSeccess(userPhone);
                     Log.i("Change userhead seccess",userPhone);
                 }
                 else{
@@ -85,10 +85,10 @@ public class UserPageModel implements UserPageContract.Model {
 
     }
 
-    private void getUserInfo() {
+    private void getUserInfo(String userphone) {
         GetUserInfoApi getUserInfoApi=new GetUserInfoApi();
         GetUserInfoService getUserInfoService=getUserInfoApi.getService();
-        Call<UserInfo> call_userInfo=getUserInfoService.getState(userPhone);
+        Call<UserInfo> call_userInfo=getUserInfoService.getState(userphone);
         call_userInfo.enqueue(new Callback<UserInfo>() {
             @Override
             public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
@@ -112,14 +112,14 @@ public class UserPageModel implements UserPageContract.Model {
         });
     }
 
-    public void getMyStory(final String userId) {
+    public void getMyStory(final String userid) {
         GetStorysApi getStorysApi=new GetStorysApi();
         GetStroysService getStroysService=getStorysApi.getService();
-        Call<MyStorysBean> call_myStorys=getStroysService.getState("1");
+        Call<MyStorysBean> call_myStorys=getStroysService.getState(userid);
         call_myStorys.enqueue(new Callback<MyStorysBean>() {
             @Override
             public void onResponse(Call<MyStorysBean> call, Response<MyStorysBean> response) {
-                Log.i("GetMyStorySeccessed", "    "+userId);
+                Log.i("GetMyStorySeccessed", "    "+userid);
                 if(response.body().getArray().size()!=0){
                     mListener.onLoadMyStorysSeccess(response.body().getArray());
                 }else{
@@ -131,7 +131,7 @@ public class UserPageModel implements UserPageContract.Model {
             @Override
             public void onFailure(Call<MyStorysBean> call, Throwable t) {
                 mListener.onLoadMyStorysFail();
-                Log.i("GetMyStoryFailed", "    "+userId+"    "+t);
+                Log.i("GetMyStoryFailed", "    "+userid+"    "+t);
             }
         });
     }
